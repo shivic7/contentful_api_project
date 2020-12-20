@@ -1,0 +1,13 @@
+<%if @post.present?%>
+	<div class="contentful_product">
+		<h1><%= @post.title %></h1>
+		<img style="width: 1000px; height: 400px" src="<%= Photo.find(@post.photo.id).url %>" />
+		<h2><%=Tag.find_by(id: @post.tags.map(&:id)).load().map(&:name).join(" ") if @post.tags.present?%></h2>
+		<p><%= @post.content["content"][0]["content"][0]["value"] %></p>
+		<%if @post.author.present?%>
+			<p>Author: <%= Author.find(@post.author.id).name%></p> 
+		<%end%>
+	</div>
+<%else%>
+	<h1>No Detail Found</h1>
+<%end%>

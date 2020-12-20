@@ -1,0 +1,8 @@
+<% Post.all().load.each do |post| %>
+  <div class="contentful_product">
+    <h1><%= post.title %></h1>
+    <img style="width: 1000px; height: 400px" src="<%= Photo.find(post.photo.id).url %>" />
+    <p><%= post.content["content"][0]["content"][0]["value"] %></p>
+    <a href="/view-post/<%=post.id%>">View More</a>
+  </div>
+<% end %>
